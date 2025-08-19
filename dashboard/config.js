@@ -32,6 +32,21 @@ const DASHBOARD_CONFIG = {
         siteType: 'e-commerce'
     },
     
+    // Shopify Configuration
+    shopify: {
+        // Shopify store URL
+        storeUrl: '',
+        
+        // Access token for Shopify API
+        accessToken: '',
+        
+        // API version
+        apiVersion: '2024-01',
+        
+        // Enable Shopify integration
+        enabled: false
+    },
+    
     // Dashboard Settings
     dashboard: {
         // Auto-refresh interval (in milliseconds)

@@ -6,11 +6,14 @@ AI SEO Optimizer is a comprehensive WordPress plugin that provides AI-powered SE
 
 ## 📊 Key Features
 
-- **AI-Powered SEO Analysis** - Real-time scoring and recommendations
+- **Traditional SEO Focus** - Optimized specifically for Google/Bing search rankings
+- **Multi-CMS Support** - WordPress and Shopify integration with automated SEO optimization
+- **AI-Powered Analysis** - Real-time scoring and recommendations with confidence scores
 - **E-commerce Optimization** - Product schema markup and image optimization
 - **Modern Dashboard** - Professional interface with real-time metrics
 - **Automated Workflows** - AI recommendations with approval system
-- **Multi-Site Support** - Manage multiple websites from one dashboard
+- **Security & Backup** - Automatic backups and rollback capabilities
+- **Explainable AI** - Detailed reasoning for every recommendation
 
 ## 🎯 Demo Results
 

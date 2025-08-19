@@ -74,6 +74,11 @@ class AI_SEO_Optimizer_Enhanced {
     public $automation_engine;
     
     /**
+     * Shopify Connector instance
+     */
+    public $shopify_connector;
+    
+    /**
      * Get plugin instance
      */
     public static function get_instance() {
@@ -119,6 +124,11 @@ class AI_SEO_Optimizer_Enhanced {
         // REST API routes
         add_action('rest_api_init', array($this, 'register_rest_routes'));
         
+        // Shopify-specific AJAX handlers
+        add_action('wp_ajax_ai_seo_shopify_connect', array($this, 'ajax_shopify_connect'));
+        add_action('wp_ajax_ai_seo_shopify_analyze', array($this, 'ajax_shopify_analyze'));
+        add_action('wp_ajax_ai_seo_shopify_update', array($this, 'ajax_shopify_update'));
+        
         // Cron jobs
         add_action('ai_seo_daily_scan', array($this, 'daily_scan'));
         add_action('ai_seo_automation_check', array($this, 'automation_check'));
@@ -138,6 +148,9 @@ class AI_SEO_Optimizer_Enhanced {
         require_once AI_SEO_OPTIMIZER_PLUGIN_DIR . 'includes/class-backup-manager.php';
         require_once AI_SEO_OPTIMIZER_PLUGIN_DIR . 'includes/class-approval-workflow.php';
         require_once AI_SEO_OPTIMIZER_PLUGIN_DIR . 'includes/class-automation-engine.php';
+        require_once AI_SEO_OPTIMIZER_PLUGIN_DIR . 'includes/class-shopify-connector.php';
+        require_once AI_SEO_OPTIMIZER_PLUGIN_DIR . 'includes/class-shopify-data.php';
+        require_once AI_SEO_OPTIMIZER_PLUGIN_DIR . 'includes/class-shopify-seo.php';
         
         $this->api_handler = new AI_SEO_API_Handler();
         $this->content_updater = new AI_SEO_Content_Updater();
@@ -145,6 +158,7 @@ class AI_SEO_Optimizer_Enhanced {
         $this->backup_manager = new AI_SEO_Backup_Manager();
         $this->approval_workflow = new AI_SEO_Approval_Workflow();
         $this->automation_engine = new AI_SEO_Automation_Engine();
+        $this->shopify_connector = new AI_SEO_Shopify_Connector();
     }
     
     /**
@@ -314,7 +328,113 @@ class AI_SEO_Optimizer_Enhanced {
         add_option('ai_seo_auto_backup', true);
         add_option('ai_seo_approval_required', true);
         
+        // Shopify settings
+        add_option('ai_seo_shopify_api_key', '');
+        add_option('ai_seo_shopify_api_secret', '');
+        add_option('ai_seo_shopify_store_url', '');
+        add_option('ai_seo_shopify_access_token', '');
+        
         flush_rewrite_rules();
+    }
+    
+    /**
+     * AJAX: Connect to Shopify store
+     */
+    public function ajax_shopify_connect() {
+        check_ajax_referer('ai_seo_nonce', 'nonce');
+        
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error(__('Insufficient permissions', 'ai-seo-optimizer'));
+        }
+        
+        $store_url = sanitize_text_field($_POST['store_url']);
+        $access_token = sanitize_text_field($_POST['access_token']);
+        
+        // Update settings
+        update_option('ai_seo_shopify_store_url', $store_url);
+        update_option('ai_seo_shopify_access_token', $access_token);
+        
+        // Test connection
+        $result = $this->shopify_connector->test_connection();
+        
+        if (is_wp_error($result)) {
+            wp_send_json_error($result->get_error_message());
+        }
+        
+        wp_send_json_success(array(
+            'message' => __('Shopify store connected successfully', 'ai-seo-optimizer'),
+            'store_info' => $result
+        ));
+    }
+    
+    /**
+     * AJAX: Analyze Shopify store SEO
+     */
+    public function ajax_shopify_analyze() {
+        check_ajax_referer('ai_seo_nonce', 'nonce');
+        
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error(__('Insufficient permissions', 'ai-seo-optimizer'));
+        }
+        
+        // Get store data
+        $store_data = $this->shopify_connector->get_store_data();
+        
+        if (empty($store_data)) {
+            wp_send_json_error(__('Unable to retrieve store data', 'ai-seo-optimizer'));
+        }
+        
+        // Analyze SEO
+        $analysis = AI_SEO_Shopify_SEO::analyze_store_seo($store_data);
+        
+        if (is_wp_error($analysis)) {
+            wp_send_json_error($analysis->get_error_message());
+        }
+        
+        wp_send_json_success($analysis);
+    }
+    
+    /**
+     * AJAX: Update Shopify SEO data
+     */
+    public function ajax_shopify_update() {
+        check_ajax_referer('ai_seo_nonce', 'nonce');
+        
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error(__('Insufficient permissions', 'ai-seo-optimizer'));
+        }
+        
+        $target_type = sanitize_text_field($_POST['target_type']);
+        $target_id = intval($_POST['target_id']);
+        $seo_data = array(
+            'seo_title' => sanitize_text_field($_POST['seo_title']),
+            'seo_description' => sanitize_textarea_field($_POST['seo_description'])
+        );
+        
+        $result = null;
+        
+        switch ($target_type) {
+            case 'product':
+                $result = AI_SEO_Shopify_SEO::update_product_seo($this->shopify_connector, $target_id, $seo_data);
+                break;
+            case 'page':
+                $result = AI_SEO_Shopify_SEO::update_page_seo($this->shopify_connector, $target_id, $seo_data);
+                break;
+            case 'collection':
+                $result = AI_SEO_Shopify_SEO::update_collection_seo($this->shopify_connector, $target_id, $seo_data);
+                break;
+            default:
+                wp_send_json_error(__('Invalid target type', 'ai-seo-optimizer'));
+        }
+        
+        if (is_wp_error($result)) {
+            wp_send_json_error($result->get_error_message());
+        }
+        
+        wp_send_json_success(array(
+            'message' => __('SEO data updated successfully', 'ai-seo-optimizer'),
+            'result' => $result
+        ));
     }
     
     /**
