@@ -1,0 +1,137 @@
+{
+  "site_info": {
+    "name": "TechGear Pro",
+    "url": "http://localhost/test-shopping-site/",
+    "type": "e-commerce",
+    "cms": "custom",
+    "description": "Premium electronics and smart gadgets online store"
+  },
+  "seo_settings": {
+    "target_keywords": [
+      "electronics",
+      "smartphones",
+      "laptops",
+      "gadgets",
+      "tech gear",
+      "online shopping",
+      "premium electronics"
+    ],
+    "competitors": [
+      "bestbuy.com",
+      "amazon.com/electronics",
+      "newegg.com",
+      "microcenter.com"
+    ],
+    "local_market": "United States",
+    "language": "en-US"
+  },
+  "content_analysis": {
+    "total_pages": 1,
+    "total_products": 6,
+    "total_images": 7,
+    "content_quality_score": 85,
+    "readability_score": 78,
+    "keyword_density": {
+      "electronics": 12,
+      "smartphones": 8,
+      "laptops": 6,
+      "gadgets": 10
+    }
+  },
+  "technical_seo": {
+    "meta_tags": {
+      "title": "TechGear Pro - Premium Electronics & Gadgets | Best Deals Online",
+      "description": "Discover premium electronics, smartphones, laptops, and smart gadgets at TechGear Pro. Free shipping, 30-day returns, and expert customer support. Shop the latest tech today!",
+      "keywords": "electronics, smartphones, laptops, gadgets, tech gear, online shopping, premium electronics",
+      "robots": "index, follow",
+      "canonical": "https://techgearpro.com"
+    },
+    "open_graph": {
+      "title": "TechGear Pro - Premium Electronics & Gadgets",
+      "description": "Discover premium electronics, smartphones, laptops, and smart gadgets at TechGear Pro.",
+      "type": "website",
+      "url": "https://techgearpro.com"
+    },
+    "images": {
+      "total_count": 7,
+      "with_alt_text": 6,
+      "optimized": 5,
+      "missing_alt": 1
+    },
+    "performance": {
+      "page_speed": 85,
+      "mobile_friendly": true,
+      "ssl_enabled": false,
+      "compression_enabled": false
+    }
+  },
+  "ai_recommendations": [
+    {
+      "id": "rec_001",
+      "type": "meta_description",
+      "priority": "high",
+      "title": "Optimize Meta Description",
+      "description": "Current meta description is good but could be more compelling for click-through rates",
+      "current_value": "Discover premium electronics, smartphones, laptops, and smart gadgets at TechGear Pro. Free shipping, 30-day returns, and expert customer support. Shop the latest tech today!",
+      "suggested_value": "Shop premium electronics & gadgets at TechGear Pro! iPhone 15 Pro Max, MacBook Pro, Apple Watch & more. Free shipping over $50. 30-day returns. Best prices guaranteed!",
+      "impact_score": 8,
+      "confidence": 95,
+      "seo_points": 3
+    },
+    {
+      "id": "rec_002",
+      "type": "image_optimization",
+      "priority": "medium",
+      "title": "Add Alt Text to Hero Image",
+      "description": "Hero image is missing alt text which affects accessibility and SEO",
+      "current_value": "No alt text",
+      "suggested_value": "Premium electronics store with latest smartphones, laptops, and gadgets on display",
+      "impact_score": 6,
+      "confidence": 92,
+      "seo_points": 1
+    },
+    {
+      "id": "rec_003",
+      "type": "content_structure",
+      "priority": "medium",
+      "title": "Add H2 Subheadings",
+      "description": "Product descriptions could benefit from better heading structure",
+      "current_value": "No H2 headings in product sections",
+      "suggested_value": "Add H2 headings like 'Smartphone Collection', 'Laptop Selection', 'Smart Gadgets'",
+      "impact_score": 5,
+      "confidence": 88,
+      "seo_points": 2
+    },
+    {
+      "id": "rec_004",
+      "type": "internal_linking",
+      "priority": "low",
+      "title": "Add Internal Links",
+      "description": "No internal linking structure found",
+      "current_value": "No internal links",
+      "suggested_value": "Add links to product categories, about page, contact page",
+      "impact_score": 4,
+      "confidence": 85,
+      "seo_points": 1
+    },
+    {
+      "id": "rec_005",
+      "type": "schema_markup",
+      "priority": "high",
+      "title": "Add Product Schema Markup",
+      "description": "Missing structured data for products",
+      "current_value": "No schema markup",
+      "suggested_value": "Add JSON-LD schema for products, organization, and breadcrumbs",
+      "impact_score": 9,
+      "confidence": 90,
+      "seo_points": 4
+    }
+  ],
+  "automation_settings": {
+    "auto_optimize_images": true,
+    "auto_generate_alt_text": true,
+    "auto_optimize_meta_tags": true,
+    "auto_backup_before_changes": true,
+    "approval_required": true
+  }
+}

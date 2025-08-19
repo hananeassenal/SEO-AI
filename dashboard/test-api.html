@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI SEO API Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        button:hover {
+            background: #5a67d8;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .info {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 AI SEO API Connection Test</h1>
+        <p>Use this page to test your WordPress plugin API connection before using the dashboard.</p>
+        
+        <div class="form-group">
+            <label for="baseURL">WordPress Site URL:</label>
+            <input type="url" id="baseURL" value="http://digital-mareketing.local" placeholder="http://digital-mareketing.local">
+        </div>
+        
+        <div class="form-group">
+            <label for="apiKey">API Key:</label>
+            <input type="text" id="apiKey" value="test_api_key_12345" placeholder="Enter your API key from WordPress admin">
+        </div>
+        
+        <div class="form-group">
+            <label for="customerId">Customer ID (optional):</label>
+            <input type="text" id="customerId" placeholder="Enter customer ID if applicable">
+        </div>
+        
+        <button onclick="testConnection()">🔗 Test Connection</button>
+        <button onclick="testDashboardData()">📊 Test Dashboard Data</button>
+        <button onclick="testScan()">🔍 Test Scan</button>
+        <button onclick="testLogs()">📋 Test Logs</button>
+        
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function showResult(message, type = 'info') {
+            const resultDiv = document.getElementById('result');
+            resultDiv.className = `result ${type}`;
+            resultDiv.textContent = message;
+        }
+
+        async function makeApiRequest(endpoint, method = 'GET', body = null) {
+            const baseURL = document.getElementById('baseURL').value;
+            const apiKey = document.getElementById('apiKey').value;
+            const customerId = document.getElementById('customerId').value;
+            
+            if (!baseURL || !apiKey) {
+                showResult('Please enter both WordPress URL and API Key', 'error');
+                return;
+            }
+            
+            const url = `${baseURL}/wp-json/ai-seo/v1${endpoint}`;
+            const headers = {
+                'Content-Type': 'application/json',
+                'X-API-Key': apiKey
+            };
+            
+            if (customerId) {
+                headers['X-Customer-ID'] = customerId;
+            }
+            
+            try {
+                const options = {
+                    method: method,
+                    headers: headers
+                };
+                
+                if (body) {
+                    options.body = JSON.stringify(body);
+                }
+                
+                showResult(`Testing: ${url}\nMethod: ${method}\nHeaders: ${JSON.stringify(headers, null, 2)}`, 'info');
+                
+                const response = await fetch(url, options);
+                const data = await response.text();
+                
+                if (response.ok) {
+                    showResult(`✅ SUCCESS (${response.status})\n\nResponse:\n${data}`, 'success');
+                } else {
+                    showResult(`❌ ERROR (${response.status})\n\nResponse:\n${data}`, 'error');
+                }
+                
+            } catch (error) {
+                showResult(`❌ NETWORK ERROR\n\n${error.message}`, 'error');
+            }
+        }
+
+        function testConnection() {
+            showResult('Testing API connection...', 'info');
+            makeApiRequest('/health');
+        }
+
+        function testDashboardData() {
+            showResult('Testing dashboard data endpoint...', 'info');
+            makeApiRequest('/dashboard-data');
+        }
+
+        function testScan() {
+            showResult('Testing scan endpoint...', 'info');
+            makeApiRequest('/scan');
+        }
+
+        function testLogs() {
+            showResult('Testing logs endpoint...', 'info');
+            makeApiRequest('/logs');
+        }
+    </script>
+</body>
+</html>

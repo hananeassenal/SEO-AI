@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traditional SEO AI Automation Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-search"></i>
+                    <span>SEO AI Platform</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="#dashboard">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#cms-connectors">
+                            <i class="fas fa-plug"></i>
+                            <span>CMS Connectors</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#ai-recommendations">
+                            <i class="fas fa-robot"></i>
+                            <span>AI Recommendations</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#approval-workflow">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Approval Workflow</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#automation">
+                            <i class="fas fa-cogs"></i>
+                            <span>Automation</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#audit-logs">
+                            <i class="fas fa-history"></i>
+                            <span>Audit Logs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#security">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Security & Backup</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#analytics">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Analytics</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#settings">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1>Traditional SEO AI Automation</h1>
+                    <p>Google/Bing optimization with AI-powered automation and user control</p>
+                </div>
+                <div class="header-right">
+                    <div class="status-indicator">
+                        <span class="status-dot active"></span>
+                        <span class="status-text">AI System Active</span>
+                    </div>
+                    <div class="user-menu">
+                        <img src="https://via.placeholder.com/40" alt="User" class="user-avatar">
+                        <span class="user-name">Target Customer</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="connected-sites">1</h3>
+                            <p>Connected Sites</p>
+                        </div>
+                        <div class="stat-trend positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+1</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="seo-score">87</h3>
+                            <p>Google/Bing SEO Score</p>
+                        </div>
+                        <div class="stat-trend positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+5</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="pending-approvals">3</h3>
+                            <p>Pending Approvals</p>
+                        </div>
+                        <div class="stat-trend warning">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>3</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="automated-changes">24</h3>
+                            <p>Automated Changes</p>
+                        </div>
+                        <div class="stat-trend positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+8</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Dashboard Grid -->
+                <div class="dashboard-grid">
+                    <!-- SEO Score Overview -->
+                    <div class="dashboard-card seo-score-card">
+                        <div class="card-header">
+                            <h3>Traditional SEO Performance (Google/Bing)</h3>
+                            <div class="card-actions">
+                                <button class="btn-icon" title="Run AI Analysis">
+                                    <i class="fas fa-brain"></i>
+                                </button>
+                                <button class="btn-icon" title="Refresh">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="seo-score-content">
+                            <div class="score-circle">
+                                <svg class="score-svg" viewBox="0 0 120 120">
+                                    <circle class="score-bg" cx="60" cy="60" r="54"></circle>
+                                    <circle class="score-progress" cx="60" cy="60" r="54" 
+                                            stroke-dasharray="339.292" stroke-dashoffset="84.823"></circle>
+                                </svg>
+                                <div class="score-text">
+                                    <span class="score-number" id="main-seo-score">87</span>
+                                    <span class="score-label">/100</span>
+                                </div>
+                            </div>
+                            <div class="score-breakdown">
+                                <div class="score-item">
+                                    <span class="score-label">On-Page SEO</span>
+                                    <div class="score-bar">
+                                        <div class="score-fill" style="width: 92%"></div>
+                                    </div>
+                                    <span class="score-value">92</span>
+                                </div>
+                                <div class="score-item">
+                                    <span class="score-label">Technical SEO</span>
+                                    <div class="score-bar">
+                                        <div class="score-fill" style="width: 85%"></div>
+                                    </div>
+                                    <span class="score-value">85</span>
+                                </div>
+                                <div class="score-item">
+                                    <span class="score-label">Content Quality</span>
+                                    <div class="score-bar">
+                                        <div class="score-fill" style="width: 78%"></div>
+                                    </div>
+                                    <span class="score-value">78</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI Recommendations Queue -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>AI Recommendations Queue</h3>
+                            <div class="card-actions">
+                                <button class="btn-text">View All</button>
+                            </div>
+                        </div>
+                        <div class="recommendations-list">
+                            <div class="recommendation-item pending">
+                                <div class="recommendation-icon">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                                <div class="recommendation-content">
+                                    <h4>Optimize Meta Description</h4>
+                                    <p>Improve click-through rate with AI-generated meta description</p>
+                                    <div class="recommendation-meta">
+                                        <span class="confidence">95% confidence</span>
+                                        <span class="impact">+3 SEO points</span>
+                                    </div>
+                                </div>
+                                <div class="recommendation-actions">
+                                    <button class="btn-approve">Approve</button>
+                                    <button class="btn-modify">Modify</button>
+                                    <button class="btn-reject">Reject</button>
+                                </div>
+                            </div>
+                            <div class="recommendation-item pending">
+                                <div class="recommendation-icon">
+                                    <i class="fas fa-heading"></i>
+                                </div>
+                                <div class="recommendation-content">
+                                    <h4>Add H2 Subheadings</h4>
+                                    <p>Improve content structure for better Google ranking</p>
+                                    <div class="recommendation-meta">
+                                        <span class="confidence">88% confidence</span>
+                                        <span class="impact">+2 SEO points</span>
+                                    </div>
+                                </div>
+                                <div class="recommendation-actions">
+                                    <button class="btn-approve">Approve</button>
+                                    <button class="btn-modify">Modify</button>
+                                    <button class="btn-reject">Reject</button>
+                                </div>
+                            </div>
+                            <div class="recommendation-item pending">
+                                <div class="recommendation-icon">
+                                    <i class="fas fa-image"></i>
+                                </div>
+                                <div class="recommendation-content">
+                                    <h4>Add Alt Text to Images</h4>
+                                    <p>Improve accessibility and image SEO</p>
+                                    <div class="recommendation-meta">
+                                        <span class="confidence">92% confidence</span>
+                                        <span class="impact">+1 SEO point</span>
+                                    </div>
+                                </div>
+                                <div class="recommendation-actions">
+                                    <button class="btn-approve">Approve</button>
+                                    <button class="btn-modify">Modify</button>
+                                    <button class="btn-reject">Reject</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CMS Connectors Status -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>CMS Connectors</h3>
+                            <div class="card-actions">
+                                <button class="btn-text">Add Connector</button>
+                            </div>
+                        </div>
+                        <div class="cms-connectors">
+                            <div class="cms-item connected">
+                                <div class="cms-info">
+                                    <div class="cms-avatar wordpress">
+                                        <i class="fab fa-wordpress"></i>
+                                    </div>
+                                    <div class="cms-details">
+                                        <h4>WordPress Site</h4>
+                                        <p>digital-mareketing.local</p>
+                                        <span class="connection-status">Connected</span>
+                                    </div>
+                                </div>
+                                <div class="cms-actions">
+                                    <button class="btn-icon" title="Test Connection">
+                                        <i class="fas fa-sync"></i>
+                                    </button>
+                                    <button class="btn-icon" title="Settings">
+                                        <i class="fas fa-cog"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="cms-item available">
+                                <div class="cms-info">
+                                    <div class="cms-avatar shopify">
+                                        <i class="fab fa-shopify"></i>
+                                    </div>
+                                    <div class="cms-details">
+                                        <h4>Shopify Store</h4>
+                                        <p>Connect your e-commerce site</p>
+                                        <span class="connection-status">Available</span>
+                                    </div>
+                                </div>
+                                <div class="cms-actions">
+                                    <button class="btn-primary">Connect</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>AI Automation Actions</h3>
+                        </div>
+                        <div class="quick-actions">
+                            <button class="action-btn primary" id="run-ai-scan">
+                                <i class="fas fa-brain"></i>
+                                <span>Run AI Analysis</span>
+                            </button>
+                            <button class="action-btn secondary" id="review-recommendations">
+                                <i class="fas fa-list-check"></i>
+                                <span>Review Recommendations</span>
+                            </button>
+                            <button class="action-btn secondary" id="view-audit-logs">
+                                <i class="fas fa-history"></i>
+                                <span>View Audit Logs</span>
+                            </button>
+                            <button class="action-btn secondary" id="backup-sites">
+                                <i class="fas fa-download"></i>
+                                <span>Backup Sites</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="api-connector.js"></script>
+    <script src="debug-api.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
